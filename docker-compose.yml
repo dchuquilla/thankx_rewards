@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+    networks:
+      - thanx_network
+    command: >
+      /bin/sh -c "bundle exec rails db:create db:migrate db:seed && bundle exec rails server -b 0.0.0.0"
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - PORT=3001 # Ensure React runs on 3001
+    networks:
+      - thanx_network
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - thanx_network
+
+volumes:
+  db_data:
+
+networks:
+  thanx_network:
+    driver: bridge
