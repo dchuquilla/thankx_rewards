@@ -1,13 +1,4 @@
-## Project Information
-
-### Backend
-- Ruby on Rails (7.0.8)
-
-### Frontend
-- React (18.3.1)
-
-### Database
-- MySQL (8.0)
+## Thanx Rewards Redemption
 
 ### Summary
 The challenge is to implement a basic rewards redemption web app that allows a user to do the following:
@@ -16,6 +7,7 @@ The challenge is to implement a basic rewards redemption web app that allows a u
 - Redeem rewards using their points.
 - See a history of their reward redemptions.
 
+The app consists of a backend API and a frontend interface. The backend API is implemented using Ruby on Rails and the frontend interface is implemented using React.
 ### Core Requirements
 
 #### Backend API
@@ -34,6 +26,12 @@ Implement a simple interface to interact with the backend API. This could be a c
 ### Access
 - Backend: http://localhost:3000
 - Frontend: http://localhost:3001
+
+### Versions
+- Ruby on Rails (7.0.8)
+- React (18.3.1)
+- MySQL (8.0)
+
 
 ### Setup
 
