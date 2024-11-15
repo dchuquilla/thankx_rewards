@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -65,4 +67,7 @@ Rails.application.configure do
 
   ## Devise configuration
   config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
+
+  ## Allow requests to www.example.com in test environment
+  config.hosts << "www.example.com"
 end
