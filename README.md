@@ -24,8 +24,8 @@ All data is persisted into MySQL database.
 Implement a simple interface to interact with the backend API. This could be a command-line interface (CLI) or a web-based interface (Preferred if your focus is on the frontend).
 
 ### Access
-- Backend: http://localhost:3000
-- Frontend: http://localhost:3001
+- Backend: http://127.0.0.1:3000
+- Frontend: http://127.0.0.1:3001
 
 ### Versions
 - Ruby on Rails (7.0.8)
