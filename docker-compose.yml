@@ -19,11 +19,11 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3001:3001"
+      - "3002:3001"
     volumes:
       - ./frontend:/app
     environment:
-      - PORT=3001 # Ensure React runs on 3001
+      - PORT=3002 # Ensure React runs on 3001
     networks:
       - thanx_network
 
@@ -32,7 +32,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
