@@ -32,6 +32,9 @@ Implement a simple interface to interact with the backend API. This could be a c
 - React (18.3.1)
 - MySQL (8.0)
 
+### Demo users
+- User 1: email: user_(1 a 50)@thanx.com, password: password
+
 
 ### Setup
 
