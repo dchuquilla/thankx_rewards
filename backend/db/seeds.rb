@@ -10,3 +10,11 @@ require "faker"
   end
   member.save!
 end
+
+(1..50).each do |n|
+  reward = Reward.find_or_create_by(name: Faker::Restaurant.name) do |reward|
+    reward.description = Faker::Restaurant.description
+    reward.points_cost = rand(100..1500)
+  end
+  reward.save!
+end
