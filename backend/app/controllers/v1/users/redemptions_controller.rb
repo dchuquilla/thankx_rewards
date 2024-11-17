@@ -4,6 +4,8 @@ class V1::Users::RedemptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    redemptions = current_user.redemptions
+    render json: redemptions, status: :ok
   end
 
   def create

@@ -11,6 +11,44 @@ RSpec.describe "Users Redemptions API", type: :request do
   let(:authorization) { get_token_bearer(user) }
 
   path "/v1/users/redemptions" do
+    get "Retrieves a list of redemptions" do
+      tags "Users"
+      consumes "application/json"
+      produces "application/json"
+      security [Bearer: []]
+
+      response(200, "redemptions retrieved") do
+        schema type: :array,
+          items: {
+            type: :object,
+            properties: {
+              id: { type: :integer, nullable: false },
+              reward: {
+                type: :object,
+                properties: {
+                  id: { type: :integer, nullable: false },
+                  name: { type: :string, nullable: false },
+                  points: { type: :integer, nullable: false },
+                },
+                required: %w[id name points],
+              },
+            },
+            required: %w[id reward],
+          }
+
+        let!(:redemptions) { create_list(:redemption, 3, user: user) }
+
+        before do |example|
+          submit_request(example.metadata)
+        end
+
+        it "returns a list of redemptions" do
+          body = JSON.parse(response.body)
+          expect(body.size).to eq(3)
+        end
+      end
+    end
+
     post "Creates a redemption" do
       tags "Users"
       consumes "application/json"
