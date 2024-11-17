@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     namespace :users do
       get "points_balance", to: "profile#index"
     end
+
+    get "rewards", to: "rewards#index"
   end
 end
