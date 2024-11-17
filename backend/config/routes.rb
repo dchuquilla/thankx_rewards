@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     namespace :users do
       get "points_balance", to: "profile#index"
+      resources :redemptions, only: [:index, :create]
     end
 
     get "rewards", to: "rewards#index"
