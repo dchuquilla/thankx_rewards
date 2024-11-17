@@ -4,17 +4,18 @@ class V1::Users::RedemptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    redemptions = current_user.redemptions
-    render json: redemptions, status: :ok
+    redemptions = UserRedemptionsPresenter.new(current_user.redemptions)
+
+    render json: redemptions.as_json, status: :ok
   end
 
   def create
-    redemption = Redemption.new(redemption_params.merge(user: current_user))
+    redemption = RedimRewardService.new(current_user, redemption_params[:reward_id]).call
 
-    if redemption.save
-      render json: redemption, status: :created
+    if redemption[:success]
+      render json: redemption[:redemption], status: :created
     else
-      render json: redemption.errors, status: :unprocessable_entity
+      render json: redemption, status: :unprocessable_entity
     end
   end
 

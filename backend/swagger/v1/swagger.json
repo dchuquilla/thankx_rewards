@@ -193,8 +193,36 @@
                     "id": {
                       "type": "integer",
                       "nullable": false
+                    },
+                    "user_id": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "reward_id": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "redimed_at": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": false
                     }
-                  }
+                  },
+                  "required": [
+                    "id",
+                    "user_id",
+                    "reward_id",
+                    "redimed_at",
+                    "created_at",
+                    "updated_at"
+                  ]
                 }
               }
             }
@@ -232,11 +260,11 @@
                     "required": [
                       "reward_id"
                     ]
-                  },
-                  "required": [
-                    "redemption"
-                  ]
-                }
+                  }
+                },
+                "required": [
+                  "redemption"
+                ]
               }
             }
           }
