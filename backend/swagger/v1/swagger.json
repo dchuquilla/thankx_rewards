@@ -5,6 +5,107 @@
     "version": "v1"
   },
   "paths": {
+    "/v1/rewards": {
+      "get": {
+        "summary": "Retrieves all rewards",
+        "tags": [
+          "Rewards"
+        ],
+        "responses": {
+          "200": {
+            "description": "rewards retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rewards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "nullable": false
+                          },
+                          "name": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "description": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "points_cost": {
+                            "type": "integer",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "description",
+                          "points_cost"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "rewards"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/users/points_balance": {
+      "get": {
+        "summary": "Retrieves the user's points balance",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user's points balance retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "email": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "points": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "points"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/sign_in": {
       "post": {
         "summary": "Sign in a user",
