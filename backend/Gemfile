@@ -59,3 +59,7 @@ group :development do
 
   gem 'rufo'
 end
+
+group :test do
+  gem "database_cleaner-active_record" # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing
+end
