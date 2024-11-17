@@ -53,5 +53,5 @@ docker-compose down
 #### Run tests
 
 ```bash
-docker-compose exec backend rspec
+docker-compose exec backend bash -c "RAILS_ENV=test rspec"
 ```
