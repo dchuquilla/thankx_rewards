@@ -106,6 +106,143 @@
         }
       }
     },
+    "/v1/users/redemptions": {
+      "get": {
+        "summary": "Retrieves a list of redemptions",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "redemptions retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "nullable": false
+                      },
+                      "reward": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "nullable": false
+                          },
+                          "name": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "points": {
+                            "type": "integer",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "points"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "reward"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a redemption",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "redemption created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Reward must exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "prooperties": {
+                  "redemption": {
+                    "type": "object",
+                    "properties": {
+                      "reward_id": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "reward_id"
+                    ]
+                  },
+                  "required": [
+                    "redemption"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/sign_in": {
       "post": {
         "summary": "Sign in a user",
