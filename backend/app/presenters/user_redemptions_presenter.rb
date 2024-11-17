@@ -13,7 +13,7 @@ class UserRedemptionsPresenter
           id: redemption.reward.id,
           name: redemption.reward.name
         },
-        points_cost: redemption.reward.points_cost,
+        points_cost: redemption.points_cost,
         created_at: redemption.created_at,
       }
     end

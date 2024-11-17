@@ -14,7 +14,7 @@ class RedimRewardService
     @user.reward_points -= @reward.points_cost
     @user.save!
 
-    redemption = Redemption.new(user: @user, reward: @reward)
+    redemption = Redemption.new(user: @user, reward: @reward, points_cost: @reward.points_cost)
 
     if redemption.save
       { success: true, redemption: redemption }

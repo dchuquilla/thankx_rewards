@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_17_085337) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_17_124317) do
   create_table "jwt_denylists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "jti"
     t.datetime "exp"
@@ -22,9 +22,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_17_085337) do
   create_table "redemptions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "reward_id", null: false
-    t.datetime "redemed_at", default: "2024-11-17 12:01:24", null: false
+    t.datetime "redemed_at", default: "2024-11-17 11:23:25", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_cost", null: false
     t.index ["reward_id"], name: "index_redemptions_on_reward_id"
     t.index ["user_id"], name: "index_redemptions_on_user_id"
   end

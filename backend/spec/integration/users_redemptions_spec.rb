@@ -36,8 +36,8 @@ RSpec.describe "Users Redemptions API", type: :request do
             },
             required: %w[id reward],
           }
-
-        let!(:redemptions) { create_list(:redemption, 3, user: user) }
+        let(:reward) { create(:reward) }
+        let!(:redemptions) { create_list(:redemption, 3, user: user, points_cost: reward.points_cost) }
 
         before do |example|
           submit_request(example.metadata)
