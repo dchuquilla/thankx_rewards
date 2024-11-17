@@ -221,7 +221,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "prooperties": {
+                "properties": {
                   "redemption": {
                     "type": "object",
                     "properties": {

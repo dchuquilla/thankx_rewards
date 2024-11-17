@@ -17,6 +17,8 @@ RSpec.describe "Users Redemptions API", type: :request do
       produces "application/json"
       security [Bearer: []]
 
+
+
       response(200, "redemptions retrieved") do
         schema type: :array,
           items: {
@@ -57,7 +59,7 @@ RSpec.describe "Users Redemptions API", type: :request do
 
       parameter name: :params, in: :body, schema: {
         type: :object,
-        prooperties: {
+        properties: {
           redemption: {
             type: :object,
             properties: {
