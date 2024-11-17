@@ -13,17 +13,17 @@ services:
     networks:
       - thanx_network
     command: >
-      /bin/sh -c "bundle exec rails server -b 0.0.0.0"
+      /bin/sh -c "sleep 10 && bundle exec rails db:create db:migrate db:seed && bundle exec rails server -b 0.0.0.0"
 
   frontend:
     build:
       context: ./frontend
     ports:
-      - "3002:3001"
+      - "3001:3001"
     volumes:
       - ./frontend:/app
     environment:
-      - PORT=3002 # Ensure React runs on 3001
+      - PORT=3001 # Ensure React runs on 3001
     networks:
       - thanx_network
 
@@ -32,7 +32,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
