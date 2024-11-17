@@ -16,6 +16,9 @@ RUN bundle install
 # Copy the rest of the codebase
 COPY . .
 
+# Remove the server.pid file if it exists
+RUN rm -f /app/tmp/pids/server.pid
+
 # Expose port for Rails server
 EXPOSE 3000
 
