@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
         }
       })
       .then(response => {
-        if (response.ok) {
+        if (response.statusText === "OK") {
           logout();
         }
       })
