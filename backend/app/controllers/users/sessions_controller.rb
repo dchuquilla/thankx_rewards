@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
     super do |user|
       if user.persisted?
         token = generate_token_for(user) # Ensure this method generates a valid token
-        render json: { message: "Logged in successfully.", token: token }, status: :ok and return
+        render json: { message: "Logged in successfully.", user: current_user, token: token }, status: :ok and return
       else
         Rails.logger.info "User not persisted: #{user.errors.full_messages.join(", ")}"
         render json: { message: "Invalid login credentials." }, status: :unauthorized and return

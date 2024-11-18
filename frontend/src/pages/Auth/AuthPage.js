@@ -31,6 +31,8 @@ const AuthPage = () => {
       const token = response.data.token || response.data.accessToken || response.headers['Authorization'];
       if (token) {
         localStorage.setItem('token', token);
+        console.log('response:', response);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         setUser(response.data.user);
         window.location.href = '/';
       } else {
