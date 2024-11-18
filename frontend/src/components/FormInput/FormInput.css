@@ -1,0 +1,15 @@
+.form-input {
+  margin-bottom: 15px;
+}
+
+.form-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
