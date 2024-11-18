@@ -23,7 +23,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
+    window.location.href = '/';
     // Remove user data from local storage or handle logout logic
   };
 

@@ -18,6 +18,7 @@ const Layout = ({ children }) => {
         }
       })
       .catch(error => {
+        logout();
         console.error('Logout error:', error);
       });
   };
