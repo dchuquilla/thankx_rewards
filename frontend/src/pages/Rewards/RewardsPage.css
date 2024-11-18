@@ -9,31 +9,3 @@
   flex-wrap: wrap;
   gap: 10px;
 }
-
-.rewards-page li {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
-  padding: 20px;
-  flex: 1 1 calc(20% - 20px); /* Adjusting for 5 cards per row */
-  box-sizing: border-box;
-}
-
-.rewards-page h2 {
-  margin: 0 0 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.rewards-page p {
-  margin: 5px 0;
-}
-
-.rewards-page .description {
-  height: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

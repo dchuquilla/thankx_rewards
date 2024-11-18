@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "devise/jwt/test_helpers"
 
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
@@ -30,8 +31,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def generate_token_for(user)
-    # Implement token generation logic here
-    # For example, using JWT:
-    JWT.encode({ user_id: user.id, exp: 24.hours.from_now.to_i }, Rails.application.secrets.secret_key_base)
+    headers = { "Accept" => "application/json", "Content-Type" => "application/json" }
+    auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
+    auth_headers["Authorization"]
   end
 end

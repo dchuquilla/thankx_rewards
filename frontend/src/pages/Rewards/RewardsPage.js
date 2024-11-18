@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import RewardCard from '../../components/Rewards/RewardCard';
 import './RewardsPage.css';
 
 const RewardsPage = () => {
@@ -23,13 +24,7 @@ const RewardsPage = () => {
       <h1>Rewards</h1>
       <ul>
         {rewards.map(reward => (
-          <li key={reward.id}>
-            <h2>
-              <span className="reward-name">{reward.name}</span>
-              <span className="reward-points">{reward.points_cost}</span>
-            </h2>
-            <p className="description">{reward.description}</p>
-          </li>
+          <RewardCard key={reward.id} reward={reward} />
         ))}
       </ul>
     </div>
