@@ -36,7 +36,7 @@ services:
     networks:
       - thanx_network
     command: >
-      /bin/sh -c "bundle exec rails server -b 0.0.0.0"
+      /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
 
 volumes:
   db_data:
