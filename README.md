@@ -44,7 +44,7 @@ To set up the project, use the following `docker-compose` command:
 
 ```bash
 docker-compose up --build -d
-docker-compose run backend rails db:migrate db:seed
+docker-compose run backend rails db:create db:migrate db:seed
 ```
 
 #### Stop project

@@ -1,19 +1,16 @@
 version: '3.9'
 
 services:
-  backend:
-    build:
-      context: ./backend
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3000:3000"
+      - "3306:3306"
     volumes:
-      - ./backend:/app
-    depends_on:
-      - db
+      - db_data:/var/lib/mysql
     networks:
       - thanx_network
-    command: >
-      /bin/sh -c "sleep 10 && bundle exec rails db:create db:migrate db:seed && bundle exec rails server -b 0.0.0.0"
 
   frontend:
     build:
@@ -27,16 +24,19 @@ services:
     networks:
       - thanx_network
 
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+  backend:
+    build:
+      context: ./backend
     ports:
-      - "3306:3306"
+      - "3000:3000"
     volumes:
-      - db_data:/var/lib/mysql
+      - ./backend:/app
+    depends_on:
+      - db
     networks:
       - thanx_network
+    command: >
+      /bin/sh -c "bundle exec rails server -b 0.0.0.0"
 
 volumes:
   db_data:
