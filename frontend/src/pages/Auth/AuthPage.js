@@ -6,6 +6,7 @@ import FormInput from '../../components/FormInput/FormInput';
 
 const AuthPage = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
   const { setUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -40,13 +41,18 @@ const AuthPage = () => {
       }
 
     } catch (error) {
-      console.error('Error:', error);
+      if (error.response) {
+        setError(error.response.data.message);
+      } else {
+        console.error('Error:', error);
+      }
     }
   };
 
   return (
     <div className="auth-page">
       <h2>Login</h2>
+
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
@@ -62,6 +68,7 @@ const AuthPage = () => {
           value={formData.password}
           onChange={handleChange}
         />
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Login</button>
       </form>
     </div>
