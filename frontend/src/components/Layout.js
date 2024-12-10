@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect, useState} from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
@@ -52,7 +53,11 @@ const Layout = ({ children }) => {
           )}
         </div>
         <div>
-          <span>Points Balance: {pointsBalance}</span>
+          {isAuthenticated() ? (
+            <span>Points Balance: {pointsBalance}</span>
+          ) : (
+            null
+          )}
         </div>
       </nav>
       <main>
