@@ -5,19 +5,37 @@ import api from '../services/api';
 
 const Layout = ({ children }) => {
   const { isAuthenticated, logout } = useAuth();
-  const [pointsBalance, setPointsBalance] = useState(null); // Initialize with null to check loading state
+  const [pointsBalance, setPointsBalance] = useState(null);
+  const [redemptions, setRedemptions] = useState([]);
 
   useEffect(() => {
     const fetchPointsBalance = async () => {
       try {
         const response = await api.get('/v1/users/points_balance');
+        console.log('response 1:', response.data);
         setPointsBalance(response.data.points);
       } catch (error) {
         console.error('Error fetching points balance:', error);
       }
     };
-    isAuthenticated() ? fetchPointsBalance() : setPointsBalance(0);
-  }, []); // Add an empty dependency array to avoid infinite loop
+    const fetchRedemptions = async () => {
+      try {
+        const response = await api.get('/v1/users/redemptions');
+        console.log('response 2:', response.data);
+        setRedemptions(response.data);
+      } catch (error) {
+        console.error('Error fetching redemptions:', error);
+      }
+    };
+
+    if (isAuthenticated()) {
+      fetchPointsBalance();
+      fetchRedemptions();
+    } else {
+      setPointsBalance(0);
+      setRedemptions([]);
+    }
+  }, []);
 
   const handleLogout = () => {
     api.delete('/users/sign_out', {
@@ -62,7 +80,7 @@ const Layout = ({ children }) => {
       </nav>
       <main>
         {React.Children.map(children, child =>
-          React.cloneElement(child, { pointsBalance, setPointsBalance }) // Pass setPointsBalance as a prop
+          React.cloneElement(child, { pointsBalance, setPointsBalance, redemptions }) // Pass setPointsBalance as a prop
         )}
       </main>
     </div>

@@ -1,23 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../services/api';
+import React from 'react';
 import './ProfilePage.css';
 
 const ProfilePage = (props) => {
-  const { pointsBalance } = props;
-  const [redemptions, setRedemptions] = useState([]);
-
-  useEffect(() => {
-    const fetchRedemptions = async () => {
-      try {
-        const response = await api.get('/v1/users/redemptions');
-        console.log('response 2:', response.data);
-        setRedemptions(response.data);
-      } catch (error) {
-        console.error('Error fetching redemptions:', error);
-      }
-    };
-    fetchRedemptions();
-  }, []);
+  const { pointsBalance, redemptions } = props;
 
   return (
     <div className="rewards-page">

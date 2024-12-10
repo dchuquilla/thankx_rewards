@@ -5,7 +5,7 @@ import AuthPage from './pages/Auth/AuthPage';
 import ProfilePage from './pages/User/ProfilePage';
 
 const AppRoutes = (props) => {
-  const { pointsBalance, setPointsBalance } = props; // Destructure pointsBalance from props
+  const { pointsBalance, setPointsBalance, redemptions } = props; // Destructure pointsBalance from props
 
   return (
     <Router
@@ -15,7 +15,7 @@ const AppRoutes = (props) => {
     >
       <Routes>
         <Route exact path="/" element={<RewardsPage setPointsBalance={setPointsBalance} />} />
-        <Route path="/profile" element={<ProfilePage pointsBalance={pointsBalance} />} />
+        <Route path="/profile" element={<ProfilePage pointsBalance={pointsBalance} redemptions={redemptions} />} />
         <Route path="/users/sign_in" element={<AuthPage />} />
         <Route path="/users" component={AuthPage} />
       </Routes>
