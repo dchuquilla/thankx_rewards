@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
       setPointsBalance(0);
       setRedemptions([]);
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const handleLogout = () => {
     api.delete('/users/sign_out', {
