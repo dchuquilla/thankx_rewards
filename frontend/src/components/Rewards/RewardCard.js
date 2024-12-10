@@ -4,11 +4,12 @@ import './RewardCard.css';
 import { redeemReward } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 
-const RewardCard = ({ reward }) => {
+const RewardCard = ({ reward, setPointsBalance }) => {
   const { isAuthenticated } = useAuth();
   const handleRedemption = async () => {
     try {
-      await redeemReward(reward.id);
+      const redimResponse = await redeemReward(reward.id);
+      setPointsBalance((prevPoints) => prevPoints - redimResponse.points_cost);
       alert('Reward redeemed successfully!');
     } catch (error) {
       console.error('Error redeeming reward:', error);

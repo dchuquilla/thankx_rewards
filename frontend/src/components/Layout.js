@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 
 const Layout = ({ children }) => {
   const { isAuthenticated, logout } = useAuth();
+  const [pointsBalance, setPointsBalance] = useState(null); // Initialize with null to check loading state
+
+  useEffect(() => {
+    const fetchPointsBalance = async () => {
+      try {
+        const response = await api.get('/v1/users/points_balance');
+        setPointsBalance(response.data.points);
+      } catch (error) {
+        console.error('Error fetching points balance:', error);
+      }
+    };
+    fetchPointsBalance();
+  }, []); // Add an empty dependency array to avoid infinite loop
 
   const handleLogout = () => {
     api.delete('/users/sign_out', {
@@ -31,16 +44,21 @@ const Layout = ({ children }) => {
           <a href="/" style={{ color: '#fff', textDecoration: 'none', marginRight: '10px' }}>Home</a>
           {isAuthenticated() ? (
             <>
-              <a href="#" onClick={handleLogout} style={{ color: '#fff', textDecoration: 'none', marginRight: '10px' }}>Logout</a>
-              <a href="/profile" style={{ color: '#fff', textDecoration: 'none' }}>Profile</a>
+              <a href="/profile" style={{ color: '#fff', textDecoration: 'none', marginRight: '10px' }}>Profile</a>
+              <a href="#" onClick={handleLogout} style={{ color: '#fff', textDecoration: 'none' }}>Logout</a>
             </>
           ) : (
             <a href="/users/sign_in" style={{ color: '#fff', textDecoration: 'none' }}>Login</a>
           )}
         </div>
+        <div>
+          <span>Points Balance: {pointsBalance}</span>
+        </div>
       </nav>
       <main>
-        {children}
+        {React.Children.map(children, child =>
+          React.cloneElement(child, { pointsBalance, setPointsBalance }) // Pass setPointsBalance as a prop
+        )}
       </main>
     </div>
   );

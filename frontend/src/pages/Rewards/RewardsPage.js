@@ -3,7 +3,8 @@ import api from '../../services/api';
 import RewardCard from '../../components/Rewards/RewardCard';
 import './RewardsPage.css';
 
-const RewardsPage = () => {
+const RewardsPage = (props) => {
+  const { setPointsBalance } = props;
   const [rewards, setRewards] = useState([]);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const RewardsPage = () => {
       <h1>Rewards</h1>
       <ul>
         {rewards.map(reward => (
-          <RewardCard key={reward.id} reward={reward} />
+          <RewardCard key={reward.id} reward={reward} setPointsBalance={setPointsBalance} />
         ))}
       </ul>
     </div>
