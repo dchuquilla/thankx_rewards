@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         console.error('Error fetching points balance:', error);
       }
     };
-    fetchPointsBalance();
+    isAuthenticated() ? fetchPointsBalance() : setPointsBalance(0);
   }, []); // Add an empty dependency array to avoid infinite loop
 
   const handleLogout = () => {
